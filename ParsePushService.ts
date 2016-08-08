@@ -1,17 +1,9 @@
 ﻿import https = require('https');
 import http = require('http');
 
-class PushConfig {
-    pushServer: string;
-    ParseApplicationId : string;
-    ParseRESTAPIKey: string;
-    ParseMasterKey: string;
+import PushConfig from './PushConfig';
 
-    pushPort: number;
-    pushPath: string;
-}
-
-export default class ParsePushService {
+class ParsePushService {
 
     webConfig = new PushConfig();
 
@@ -200,3 +192,4 @@ export default class ParsePushService {
         request.end();
     }
 }
+module.exports = ParsePushService;

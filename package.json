@@ -1,6 +1,6 @@
 {
   "name": "parse-push-service",
-  "version": "0.0.1",
+  "version": "0.0.1b1",
   "description": "parse-push-service for node.js server.",
   "main": "ParsePushService.js",
   "scripts": {
