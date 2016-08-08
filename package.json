@@ -1,8 +1,8 @@
 {
   "name": "parse-push-service",
-  "version": "0.0.1b1",
+  "version": "0.0.1b3",
   "description": "parse-push-service for node.js server.",
-  "main": "ParsePushService.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

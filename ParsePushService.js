@@ -1,10 +1,8 @@
 "use strict";
 var https = require('https');
 var http = require('http');
-var PushConfig_1 = require('./PushConfig');
 var ParsePushService = (function () {
     function ParsePushService(_pushConfig) {
-        this.webConfig = new PushConfig_1.default();
         this.webConfig = _pushConfig;
     }
     ParsePushService.prototype.queryingInstallations = function () {

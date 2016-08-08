@@ -5,7 +5,7 @@ import PushConfig from './PushConfig';
 
 class ParsePushService {
 
-    webConfig = new PushConfig();
+    webConfig: PushConfig;
 
     constructor(_pushConfig: PushConfig) {
         this.webConfig = _pushConfig;
