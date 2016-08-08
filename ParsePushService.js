@@ -1,12 +1,17 @@
-import * as https from 'https';
-import * as http from "http";
-const configJson = require('../../config/webConfig.json');
-export class ParsePushService {
-    constructor() {
-        this.webConfig = new MWebConfig.WebConfig();
-        this.webConfig = JSON.parse(JSON.stringify(configJson));
+"use strict";
+var https = require('https');
+var http = require('http');
+var PushConfig = (function () {
+    function PushConfig() {
     }
-    queryingInstallations() {
+    return PushConfig;
+}());
+var ParsePushService = (function () {
+    function ParsePushService(_pushConfig) {
+        this.webConfig = new PushConfig();
+        this.webConfig = _pushConfig;
+    }
+    ParsePushService.prototype.queryingInstallations = function () {
         var options = {
             hostname: this.webConfig.pushServer,
             port: 443,
@@ -30,10 +35,10 @@ export class ParsePushService {
             });
         });
         req.end();
-    }
-    sendPushToChannels(channels, alert) {
+    };
+    ParsePushService.prototype.sendPushToChannels = function (channels, alert) {
         //var data = "{\"where\": { \"channels\": \"RFL\" }, \"data\": { \"alert\": \"The Giants scored a run! The score is now 2-2.\"}}";
-        let self = this;
+        var self = this;
         var data = {
             "where": {
                 "channels": channels
@@ -71,9 +76,9 @@ export class ParsePushService {
         });
         request.write(postJson);
         request.end();
-    }
-    sendPushToInstallationsId(installationsId, alert) {
-        let self = this;
+    };
+    ParsePushService.prototype.sendPushToInstallationsId = function (installationsId, alert) {
+        var self = this;
         if (!installationsId || installationsId.length === 0) {
             return;
         }
@@ -116,14 +121,14 @@ export class ParsePushService {
         });
         request.write(postJson);
         request.end();
-    }
-    sendPushToTargetDevices(registrationIds, alert) {
-        let self = this;
+    };
+    ParsePushService.prototype.sendPushToTargetDevices = function (registrationIds, alert) {
+        var self = this;
         if (!registrationIds || registrationIds.length === 0) {
             return;
         }
         //        where = { "score": { "$in": [1, 3, 5, 7, 9] } }
-        let data = {
+        var data = {
             "where": {
                 "deviceToken": { "$in": registrationIds }
             },
@@ -134,11 +139,11 @@ export class ParsePushService {
                 "badge": "Increment"
             }
         };
-        let postJson = JSON.stringify(data);
-        let options = {
+        var postJson = JSON.stringify(data);
+        var options = {
             host: self.webConfig.pushServer,
-            port: configJson.pushPort,
-            path: configJson.pushPath,
+            port: self.webConfig.pushPort,
+            path: self.webConfig.pushPath,
             method: 'POST',
             headers: {
                 'X-Parse-Application-Id': self.webConfig.ParseApplicationId,
@@ -147,7 +152,7 @@ export class ParsePushService {
                 'Content-Type': 'application/json'
             }
         };
-        let request = http.request(options, function (res) {
+        var request = http.request(options, function (res) {
             console.log("statusCode: ", res.statusCode);
             console.log("headers: ", res.headers);
             res.on('data', function (data) {
@@ -164,5 +169,8 @@ export class ParsePushService {
         });
         request.write(postJson);
         request.end();
-    }
-}
+    };
+    return ParsePushService;
+}());
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = ParsePushService;

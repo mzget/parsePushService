@@ -1,15 +1,22 @@
-﻿import * as https from 'https';
-import * as http from "http";
+﻿import https = require('https');
+import http = require('http');
 
-import MWebConfig = require('../../config/WebConfig');
-const configJson = require('../../config/webConfig.json');
+class PushConfig {
+    pushServer: string;
+    ParseApplicationId : string;
+    ParseRESTAPIKey: string;
+    ParseMasterKey: string;
 
-export class ParsePushService {
+    pushPort: number;
+    pushPath: string;
+}
 
-    webConfig = new MWebConfig.WebConfig();
+export default class ParsePushService {
 
-    constructor() {
-        this.webConfig = JSON.parse(JSON.stringify(configJson));
+    webConfig = new PushConfig();
+
+    constructor(_pushConfig: PushConfig) {
+        this.webConfig = _pushConfig;
     }
 
     public queryingInstallations() {
@@ -161,8 +168,8 @@ export class ParsePushService {
 
         let options = {
             host: self.webConfig.pushServer,
-            port: configJson.pushPort,
-            path: configJson.pushPath,
+            port: self.webConfig.pushPort,
+            path: self.webConfig.pushPath,
             method: 'POST',
             headers: {
                 'X-Parse-Application-Id': self.webConfig.ParseApplicationId,
