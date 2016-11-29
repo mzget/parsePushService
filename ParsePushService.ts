@@ -1,9 +1,9 @@
 ﻿import https = require('https');
 import http = require('http');
 
-import PushConfig from './PushConfig';
+import { PushConfig } from './PushConfig';
 
-class ParsePushService {
+export class ParsePushService {
 
     webConfig: PushConfig;
 
@@ -192,4 +192,3 @@ class ParsePushService {
         request.end();
     }
 }
-module.exports = ParsePushService;

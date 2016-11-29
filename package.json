@@ -1,6 +1,6 @@
 {
   "name": "parse-push-service",
-  "version": "0.0.1b3",
+  "version": "0.0.2",
   "description": "parse-push-service for node.js server.",
   "main": "index.js",
   "scripts": {
@@ -24,5 +24,8 @@
   "gitHead": "3b231b0287ba4494b3c5878c6a7556cd5a7880fc",
   "_id": "parse-push-service@0.0.1",
   "_shasum": "39d7ef31782c1a456fdb3aaa8837d4c678c207d5",
-  "_from": "parse-push-service@*"
+  "_from": "parse-push-service@*",
+  "devDependencies": {
+    "@types/node": "0.0.0"
+  }
 }

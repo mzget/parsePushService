@@ -1,6 +1,7 @@
+"use strict";
 var PushConfig = (function () {
     function PushConfig() {
     }
     return PushConfig;
 }());
-module.exports = PushConfig;
+exports.PushConfig = PushConfig;

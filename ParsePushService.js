@@ -166,4 +166,4 @@ var ParsePushService = (function () {
     };
     return ParsePushService;
 }());
-module.exports = ParsePushService;
+exports.ParsePushService = ParsePushService;
