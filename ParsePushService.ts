@@ -7,21 +7,21 @@ import { PushConfig } from './PushConfig';
 
 export class ParsePushService {
 
-    webConfig: PushConfig;
+    config: PushConfig;
 
     constructor(_pushConfig: PushConfig) {
-        this.webConfig = _pushConfig;
+        this.config = _pushConfig;
     }
 
     public queryingInstallations() {
         var options = {
-            hostname: this.webConfig.pushServer,
+            hostname: this.config.pushServer,
             port: 443,
             path: "/1/installations",
             method: 'GET',
             headers: {
-                'X-Parse-Application-Id': this.webConfig.ParseApplicationId,
-                'X-Parse-Master-Key': this.webConfig.ParseMasterKey
+                'X-Parse-Application-Id': this.config.ParseApplicationId,
+                'X-Parse-Master-Key': this.config.ParseMasterKey
             }
         };
 
@@ -57,13 +57,13 @@ export class ParsePushService {
         var postJson = JSON.stringify(data);
 
         var options = {
-            hostname: self.webConfig.pushServer,
+            hostname: self.config.pushServer,
             port: 443,
             path: "/push",
             method: 'POST',
             headers: {
-                'X-Parse-Application-Id': self.webConfig.ParseApplicationId,
-                'X-Parse-REST-API-Key': self.webConfig.ParseRESTAPIKey,
+                'X-Parse-Application-Id': self.config.ParseApplicationId,
+                'X-Parse-REST-API-Key': self.config.ParseRESTAPIKey,
                 'Content-Type': 'application/json'
             }
         };
@@ -71,7 +71,7 @@ export class ParsePushService {
             console.log("statusCode: ", res.statusCode);
             console.log("headers: ", res.headers);
 
-            res.on('data', function (data) {
+            res.on('data', function (data: any) {
                 console.log('Response: ' + data);
 
                 var json = JSON.parse(data);
@@ -96,7 +96,7 @@ export class ParsePushService {
         }
 
         //        where = { "score": { "$in": [1, 3, 5, 7, 9] } }
-        var data = {
+        let data = {
             "where": {
                 "installationId": { "$in": installationsId }
             },
@@ -105,27 +105,27 @@ export class ParsePushService {
                 "content-available": 1
             }
         };
-        var postJson = JSON.stringify(data);
+        let postJson = JSON.stringify(data);
 
-        var options = {
-            hostname: self.webConfig.pushServer,
+        let options = {
+            hostname: self.config.pushServer,
             port: 443,
             path: "/1/push",
             method: 'POST',
             headers: {
-                'X-Parse-Application-Id': self.webConfig.ParseApplicationId,
-                'X-Parse-REST-API-Key': self.webConfig.ParseRESTAPIKey,
+                'X-Parse-Application-Id': self.config.ParseApplicationId,
+                'X-Parse-REST-API-Key': self.config.ParseRESTAPIKey,
                 'Content-Type': 'application/json'
             }
         };
-        var request = https.request(options, function (res) {
+        let request = https.request(options, function (res) {
             console.log("statusCode: ", res.statusCode);
             console.log("headers: ", res.headers);
 
-            res.on('data', function (data) {
+            res.on('data', function (data: any) {
                 console.log('Response: ' + data);
 
-                var json = JSON.parse(data);
+                let json = JSON.parse(data);
                 if (json.results === false) {
                 }
                 else {
@@ -161,14 +161,14 @@ export class ParsePushService {
         let postJson = JSON.stringify(data);
 
         let options = {
-            host: self.webConfig.pushServer,
-            port: self.webConfig.pushPort,
-            path: self.webConfig.pushPath,
+            host: self.config.pushServer,
+            port: self.config.pushPort,
+            path: self.config.pushPath,
             method: 'POST',
             headers: {
-                'X-Parse-Application-Id': self.webConfig.ParseApplicationId,
-                'X-Parse-REST-API-Key': self.webConfig.ParseRESTAPIKey,
-                'X-Parse-Master-Key': self.webConfig.ParseMasterKey,
+                'X-Parse-Application-Id': self.config.ParseApplicationId,
+                'X-Parse-REST-API-Key': self.config.ParseRESTAPIKey,
+                'X-Parse-Master-Key': self.config.ParseMasterKey,
                 'Content-Type': 'application/json',
                 "Cache-Control": JSON.stringify(["no-cache", "no-store", "must-revalidate"])
             }
@@ -177,10 +177,10 @@ export class ParsePushService {
             console.log("statusCode: ", res.statusCode);
             console.log("headers: ", res.headers);
 
-            res.on('data', function (data) {
+            res.on('data', function (data: any) {
                 console.log('Response: ' + data);
 
-                var json = JSON.parse(data);
+                let json = JSON.parse(data);
                 if (json.results === false) {
                 }
                 else {
