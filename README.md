@@ -1,6 +1,10 @@
 # parsePushService
 
-## Example...
+### Installation
+
+    npm install parse-push-service --save
+
+### Example...
 ```javascript
 const pushConfig = new PushConfig();
 pushConfig.pushServer = Config.pushServer;
