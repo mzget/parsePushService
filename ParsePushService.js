@@ -1,6 +1,7 @@
 "use strict";
-var https = require('https');
-var http = require('http');
+Object.defineProperty(exports, "__esModule", { value: true });
+var https = require("https");
+var http = require("http");
 var ParsePushService = (function () {
     function ParsePushService(_pushConfig) {
         this.webConfig = _pushConfig;
@@ -143,7 +144,8 @@ var ParsePushService = (function () {
                 'X-Parse-Application-Id': self.webConfig.ParseApplicationId,
                 'X-Parse-REST-API-Key': self.webConfig.ParseRESTAPIKey,
                 'X-Parse-Master-Key': self.webConfig.ParseMasterKey,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Cache-Control": JSON.stringify(["no-cache", "no-store", "must-revalidate"])
             }
         };
         var request = http.request(options, function (res) {

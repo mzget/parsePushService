@@ -1,6 +1,6 @@
 {
   "name": "parse-push-service",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "parse-push-service for node.js server.",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,10 @@
   "_shasum": "39d7ef31782c1a456fdb3aaa8837d4c678c207d5",
   "_from": "parse-push-service@*",
   "devDependencies": {
-    "@types/node": "0.0.0"
+    "@types/node": "*"
+  },
+  "dependencies": {
+    "request": "^2.81.0",
+    "tslint": "^5.0.0"
   }
 }

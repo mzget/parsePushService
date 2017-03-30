@@ -1,4 +1,6 @@
-﻿import https = require('https');
+﻿import * as request from "request";
+
+import https = require('https');
 import http = require('http');
 
 import { PushConfig } from './PushConfig';
@@ -167,7 +169,8 @@ export class ParsePushService {
                 'X-Parse-Application-Id': self.webConfig.ParseApplicationId,
                 'X-Parse-REST-API-Key': self.webConfig.ParseRESTAPIKey,
                 'X-Parse-Master-Key': self.webConfig.ParseMasterKey,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Cache-Control": JSON.stringify(["no-cache", "no-store", "must-revalidate"])
             }
         };
         let request = http.request(options, function (res) {
